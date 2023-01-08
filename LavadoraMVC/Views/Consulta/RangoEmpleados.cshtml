@@ -1,0 +1,45 @@
+﻿@model LavadoraMVC.Models.RangoEmpleado
+
+@{
+    ViewData["Title"] = "Rango";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <h1>Consultar promedio de velocidad de los empleados en un rango de fechas</h1>
+        <hr />
+        <form asp-action="RangoEmpleados">
+            @if (ViewBag.MostrarError)
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>@ViewBag.Error</strong>
+                </div>               
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mt-1">
+                <label asp-for="Inicio" class="control-label">Inicio</label>
+                <input asp-for="Inicio" class ="form-control" type="date"/>
+                <span asp-validation-for="Inicio" class="text-danger"></span>
+            </div>
+            <div class="mt-1">
+                <label asp-for="Fin" class="control-label">Fin</label>
+                <input asp-for="Fin" class ="form-control" type="date"/>
+                <span asp-validation-for="Fin" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center mt-3">
+    <div class="col-md-5">
+        @if (ViewBag.MostrarResultado)
+        {
+            <p>El promedio es: <strong>@ViewBag.Resultado</strong></p>
+        }
+    </div> 
+</div>
+
+

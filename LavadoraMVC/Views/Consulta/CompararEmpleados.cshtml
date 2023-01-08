@@ -1,0 +1,46 @@
+﻿@model LavadoraMVC.Models.CompararEmpleado
+
+@{
+    ViewData["Title"] = "Comparar";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <h1>Comparar empleados</h1>
+        <hr />
+        <form asp-action="CompararEmpleados">
+            @if (ViewBag.MostrarError)
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>@ViewBag.Error</strong>
+                </div>               
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mt-1">
+                <label asp-for="IdEmpleado1" class="control-label">Empleado 1</label>
+                <select asp-for="IdEmpleado1" class ="form-control" asp-items="ViewBag.Empleados"></select>
+            </div>
+            <div class="mt-1">
+                <label asp-for="IdEmpleado2" class="control-label">Empleado 2</label>
+                <select asp-for="IdEmpleado2" class ="form-control" asp-items="ViewBag.Empleados"></select>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Comparar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center mt-3">
+    <div class="col-md-5">
+        @if (ViewBag.MostrarResultado)
+        {
+            <p><strong>@ViewBag.Promedio</strong></p>
+            <p>Amabilidad: @ViewBag.Amabilidad</p>
+            <p>Velocidad: @ViewBag.Velocidad</p>
+            <p>Calidad: @ViewBag.Calidad</p>
+        }
+    </div> 
+</div>
+
+

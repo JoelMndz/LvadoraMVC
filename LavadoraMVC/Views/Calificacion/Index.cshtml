@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LavadoraMVC.Models.Empleados>
+
+@{
+    ViewData["Title"] = "Calificacion";
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Calificación de los empleados</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>Velocidad</th>
+            <th>Calidad</th>
+            <th>Amabilidad</th>
+            <th>Promedio</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @(item.Lavados.Count == 0 ? 0.0 : item.Lavados.Average(x => x.Velocidad))
+                </td>
+                <td>
+                    @(item.Lavados.Count == 0 ? 0.0 : item.Lavados.Average(x => x.Calidad))
+                </td>
+                <td>
+                    @(item.Lavados.Count == 0 ? 0.0 : item.Lavados.Average(x => x.Amabilidad))
+                </td>
+                <td>
+                    @(item.Lavados.Count == 0 ? 0.0 : item.Lavados.Average(x => x.Promedio))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

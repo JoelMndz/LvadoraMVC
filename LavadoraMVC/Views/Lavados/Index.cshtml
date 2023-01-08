@@ -1,0 +1,80 @@
+﻿@model IEnumerable<LavadoraMVC.Models.Lavados>
+@using Microsoft.AspNetCore.Identity;
+
+@{
+    ViewData["Title"] = "Lavado";
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Lavado</h1>
+
+@if (User.IsInRole("cliente"))
+{
+    <p>
+        <a asp-action="Create">Agregar</a>
+    </p>
+}
+else
+{
+    <p>
+        <a asp-action="Filtrar">Filtrar</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Velocidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amabilidad)
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Empleado
+            </th>
+            <th>
+                Tipo de lavado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.FechaCreacion
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Velocidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdClienteNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoLavadoNavigation.Descripcion)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
